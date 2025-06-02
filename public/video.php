@@ -50,7 +50,7 @@ $embed_url = "https://www.youtube.com/embed/" . htmlspecialchars($video['id']);
       min-height: 100vh;
       font-family: 'Atkinson Regular', Arial, sans-serif;
       color: #222;
-      background: url('images/bk-one.png') no-repeat center center fixed;
+      background: url('images/bk-three.png') no-repeat center center fixed;
       background-size: cover;
       background-attachment: fixed;
       background-position: center 0;
