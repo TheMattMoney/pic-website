@@ -4,14 +4,19 @@ $db_path = realpath(__DIR__ . '/../db/videos.db');
 if (!file_exists($db_path)) {
     die('<h1>Database not found.</h1>');
 }
+$videos = [];
 try {
-    $pdo = new PDO('sqlite:' . $db_path);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $videos = $pdo->query('SELECT id, title, thumbnail_url FROM videos ORDER BY published_at DESC')->fetchAll(PDO::FETCH_ASSOC);
+    $db = new SQLite3($db_path, SQLITE3_OPEN_READONLY);
+    $result = $db->query('SELECT id, title, thumbnail_url FROM videos ORDER BY published_at DESC');
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $videos[] = $row;
+    }
+    $db->close();
 } catch (Exception $e) {
     die('<h1>Database error: ' . htmlspecialchars($e->getMessage()) . '</h1>');
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
