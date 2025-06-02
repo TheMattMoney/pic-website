@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Plastic Instruments</title>
+  <title>Contact - Plastic Instruments</title>
   <style>
     @font-face {
       font-family: 'Atkinson Bold';
@@ -25,7 +25,6 @@
       color: #222;
       background: url('bk-one.png') no-repeat center center fixed;
       background-size: cover;
-      /* Parallax effect */
       background-attachment: fixed;
     }
     .navbar {
@@ -70,23 +69,65 @@
     }
     h1 {
       font-family: 'Atkinson Bold', Arial, sans-serif;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      letter-spacing: 1px;
+      font-size: 2.2rem;
       color: #fff;
       text-shadow: 2px 2px 8px #222;
+      margin-bottom: 1rem;
     }
-    p, .coming-soon {
-      font-size: 1.25rem;
-      color: #eee;
-      margin: 0.5rem 0;
-      text-shadow: 1px 1px 6px #222;
+    form {
+      background: rgba(0,0,0,0.7);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 16px #2228;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto 2rem auto;
     }
-    .coming-soon {
-      margin-top: 2rem;
-      font-size: 1.1rem;
+    label {
       color: #ffd700;
-      letter-spacing: 0.5px;
+      font-family: 'Atkinson Bold', Arial, sans-serif;
+      text-align: left;
+    }
+    input, textarea {
+      font-family: 'Atkinson Regular', Arial, sans-serif;
+      font-size: 1rem;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      font-family: 'Atkinson Bold', Arial, sans-serif;
+      background: #ffd700;
+      color: #222;
+      border: none;
+      border-radius: 5px;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #fff;
+      color: #222;
+    }
+    .social-links {
+      margin-top: 2rem;
+      color: #fff;
+      font-size: 1.1rem;
+    }
+    .social-links a {
+      color: #ffd700;
+      margin: 0 0.5rem;
+      text-decoration: none;
+      font-family: 'Atkinson Bold', Arial, sans-serif;
+    }
+    .social-links a:hover {
+      text-decoration: underline;
     }
     @media (max-width: 600px) {
       .navbar {
@@ -107,6 +148,9 @@
       h1 {
         font-size: 1.5rem;
       }
+      form {
+        padding: 1rem;
+      }
     }
   </style>
 </head>
@@ -115,14 +159,27 @@
     <img src="logo-xprnt.png" alt="Plastic Instruments Logo" class="navbar-logo">
     <div class="navbar-links">
       <a href="index.html" class="navbar-link">Home</a>
-      <a href="../archive/index.html" class="navbar-link">Archive</a>
-      <a href="../contact.html" class="navbar-link">Contact</a>
+      <a href="archive/index.html" class="navbar-link">Archive</a>
+      <a href="contact.html" class="navbar-link">Contact</a>
     </div>
   </nav>
   <div class="main-content">
-    <h1>Welcome to Plastic Instruments</h1>
-    <p>Your source for innovative plastic musical instruments.</p>
-    <div class="coming-soon">Coming soon. Stay tuned!</div>
+    <h1>Contact Us</h1>
+    <form>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <div class="social-links">
+      <span>Follow us:</span>
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+    </div>
   </div>
 </body>
 </html> 

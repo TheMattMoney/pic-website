@@ -5,15 +5,37 @@ The goal is to create a home page that displays a grid of videos from the [Plast
 
 ---
 
+# Design Notes
+
+## Top Bar Navigation
+- Horizontal navigation bar at the top of the page.
+- `logo-xprnt.png` in the top left.
+- Navigation links: Home, Archive, Contact (right of logo).
+- Use Atkinson fonts for all text.
+
+## Background
+- Use `bk-one.png` as the default background image.
+- If the page scrolls, implement a parallax effect for the background.
+
+## General Style
+- Color palette should complement the logo and background.
+- Responsive design for desktop and mobile.
+
+## Archive Page
+- Archive is a placeholder for now, with a 'Coming Soon' message.
+
+---
+
 # Implementation Phases
 
 ## Phase 1: Project Setup & Planning
 - Set up `docs/` folder and this project plan.
 - Create `db/` directory for the SQLite database.
+- Create `scripts/` directory for all Python scripts.
 - Define and document the SQLite schema (see below).
 
 ## Phase 2: Data Collection & Caching
-- Write a Python script using `yt-dlp` to fetch and cache video data from the YouTube channel.
+- Write a Python script (`scripts/update_videos.py`) using `yt-dlp` to fetch and cache video data from the YouTube channel.
 - Store results in `db/videos.db` using the defined schema.
 - Set up a cron job to run the script hourly (or as needed).
 - Test that the script populates the database correctly.
