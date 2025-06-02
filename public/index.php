@@ -43,10 +43,15 @@ try {
       min-height: 100vh;
       font-family: 'Atkinson Regular', Arial, sans-serif;
       color: #222;
-      background: url('images/bk-three.png') no-repeat center center fixed;
+    }
+    .parallax-background {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: -1;
+      background: url('images/bk-three.png') no-repeat center center, #111;
       background-size: cover;
-      background-attachment: fixed;
-      background-position: center 0;
+      will-change: background-position;
+      pointer-events: none;
     }
     .navbar {
       width: 100%;
@@ -154,6 +159,7 @@ try {
   </style>
 </head>
 <body>
+  <div class="parallax-background"></div>
   <nav class="navbar">
     <img src="images/logo-xprnt.png" alt="Plastic Instruments Logo" class="navbar-logo">
     <div class="navbar-links">
@@ -175,8 +181,11 @@ try {
   </div>
   <script>
     window.addEventListener('scroll', function() {
-      const scrolled = window.pageYOffset;
-      document.body.style.backgroundPosition = 'center ' + (scrolled * 0.5) + 'px';
+      var scrolled = window.pageYOffset;
+      // Clamp the value to a reasonable range
+      var pos = Math.max(-500, Math.min(scrolled * 0.4, 500));
+      document.querySelector('.parallax-background').style.backgroundPosition = 'center ' + pos + 'px';
+      console.log('Parallax background position:', pos);
     });
   </script>
 </body>
