@@ -8,12 +8,14 @@ $id = isset($_GET['id']) ? $_GET['id'] : '';
 if (!$id) {
     die('<h1>No video ID specified.</h1>');
 }
+$video = null;
 try {
-    $pdo = new PDO('sqlite:' . $db_path);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $pdo->prepare('SELECT * FROM videos WHERE id = ?');
-    $stmt->execute([$id]);
-    $video = $stmt->fetch(PDO::FETCH_ASSOC);
+    $db = new SQLite3($db_path, SQLITE3_OPEN_READONLY);
+    $stmt = $db->prepare('SELECT * FROM videos WHERE id = :id');
+    $stmt->bindValue(':id', $id, SQLITE3_TEXT);
+    $result = $stmt->execute();
+    $video = $result->fetchArray(SQLITE3_ASSOC);
+    $db->close();
     if (!$video) {
         die('<h1>Video not found.</h1>');
     }
