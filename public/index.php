@@ -48,7 +48,7 @@ try {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
       z-index: -1;
-      background: url('images/bk-three.png') no-repeat center center, #111;
+      background: url('assets/images/bk-three.png') no-repeat center center, #111;
       background-size: cover;
       will-change: background-position;
       pointer-events: none;
@@ -161,7 +161,7 @@ try {
 <body>
   <div class="parallax-background"></div>
   <nav class="navbar">
-    <a href="index.php"><img src="images/logo-xprnt.png" alt="Plastic Instruments Logo" class="navbar-logo"></a>
+    <a href="index.php"><img src="assets/images/logo-xprnt.png" alt="Plastic Instruments Logo" class="navbar-logo"></a>
     <div class="navbar-links">
       <a href="archive/index.html" class="navbar-link">Archive</a>
       <a href="contact.html" class="navbar-link">Contact</a>
