@@ -23,10 +23,11 @@
       min-height: 100vh;
       font-family: 'Atkinson Regular', Arial, sans-serif;
       color: #222;
-      background: url('bk-one.png') no-repeat center center fixed;
+      background: url('images/bk-two.png') no-repeat center center fixed;
       background-size: cover;
       /* Parallax effect */
       background-attachment: fixed;
+      background-position: center 0;
     }
     .navbar {
       width: 100%;
@@ -112,11 +113,11 @@
 </head>
 <body>
   <nav class="navbar">
-    <img src="logo-xprnt.png" alt="Plastic Instruments Logo" class="navbar-logo">
+    <img src="images/logo-xprnt.png" alt="Plastic Instruments Logo" class="navbar-logo">
     <div class="navbar-links">
       <a href="index.html" class="navbar-link">Home</a>
-      <a href="../archive/index.html" class="navbar-link">Archive</a>
-      <a href="../contact.html" class="navbar-link">Contact</a>
+      <a href="archive/index.html" class="navbar-link">Archive</a>
+      <a href="contact.html" class="navbar-link">Contact</a>
     </div>
   </nav>
   <div class="main-content">
@@ -124,5 +125,11 @@
     <p>Your source for innovative plastic musical instruments.</p>
     <div class="coming-soon">Coming soon. Stay tuned!</div>
   </div>
+  <script>
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      document.body.style.backgroundPosition = 'center ' + (scrolled * 0.5) + 'px';
+    });
+  </script>
 </body>
 </html> 
