@@ -1,34 +1,38 @@
 <?php
 // video.php - Video detail page
-$db_path = realpath(__DIR__ . '/../db/videos.db');
-if (!file_exists($db_path)) {
-    die('<h1>Database not found.</h1>');
-}
-$id = isset($_GET['id']) ? $_GET['id'] : '';
-if (!$id) {
-    die('<h1>No video ID specified.</h1>');
-}
-$video = null;
-try {
-    $db = new SQLite3($db_path, SQLITE3_OPEN_READONLY);
-    $stmt = $db->prepare('SELECT * FROM videos WHERE id = :id');
-    $stmt->bindValue(':id', $id, SQLITE3_TEXT);
-    $result = $stmt->execute();
-    $video = $result->fetchArray(SQLITE3_ASSOC);
-    $db->close();
-    if (!$video) {
-        die('<h1>Video not found.</h1>');
+
+function get_video_by_id($db_path, $id) {
+    if (!file_exists($db_path)) {
+        return [null, 'Database not found.'];
     }
-} catch (Exception $e) {
-    die('<h1>Database error: ' . htmlspecialchars($e->getMessage()) . '</h1>');
+    if (!$id) {
+        return [null, 'No video ID specified.'];
+    }
+    try {
+        $db = new SQLite3($db_path, SQLITE3_OPEN_READONLY);
+        $stmt = $db->prepare('SELECT * FROM videos WHERE id = :id');
+        $stmt->bindValue(':id', $id, SQLITE3_TEXT);
+        $result = $stmt->execute();
+        $video = $result->fetchArray(SQLITE3_ASSOC);
+        $db->close();
+        if (!$video) {
+            return [null, 'Video not found.'];
+        }
+        return [$video, null];
+    } catch (Exception $e) {
+        return [null, 'Database error: ' . htmlspecialchars($e->getMessage())];
+    }
 }
-$embed_url = "https://www.youtube.com/embed/" . htmlspecialchars($video['id']);
+
+$db_path = realpath(__DIR__ . '/../db/videos.db');
+$id = isset($_GET['id']) ? $_GET['id'] : '';
+[$video, $error] = get_video_by_id($db_path, $id);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?=htmlspecialchars($video['title'])?> - Plastic Instruments</title>
+  <title><?= isset($video) && $video ? htmlspecialchars($video['title']) . ' - ' : '' ?>Plastic Instruments</title>
   <link rel="preload" href="assets/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="assets/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin>
   <style>
@@ -50,7 +54,7 @@ $embed_url = "https://www.youtube.com/embed/" . htmlspecialchars($video['id']);
       min-height: 100vh;
       font-family: 'Atkinson Regular', Arial, sans-serif;
       color: #222;
-      /* background removed from body */
+      background: none;
     }
     .parallax-background {
       position: fixed;
@@ -159,6 +163,17 @@ $embed_url = "https://www.youtube.com/embed/" . htmlspecialchars($video['id']);
       color: #fff;
       text-decoration: underline;
     }
+    .error-message {
+      background: rgba(255,0,0,0.1);
+      color: #b00;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 2rem auto;
+      font-size: 1.2rem;
+      box-shadow: 0 2px 16px #2224;
+      text-align: center;
+      max-width: 600px;
+    }
     @media (max-width: 600px) {
       .navbar {
         flex-direction: column;
@@ -197,26 +212,31 @@ $embed_url = "https://www.youtube.com/embed/" . htmlspecialchars($video['id']);
     </div>
   </nav>
   <div class="main-content">
-    <h1><?=htmlspecialchars($video['title'])?></h1>
-    <div class="video-embed">
-      <iframe src="<?=$embed_url?>" allowfullscreen title="YouTube video player"></iframe>
-    </div>
-    <div class="video-meta">
-      Published: <?=htmlspecialchars($video['published_at'])?>
-      <?php if (!empty($video['channel_title'])): ?>
-        &nbsp;|&nbsp; Channel: <?=htmlspecialchars($video['channel_title'])?>
-      <?php endif; ?>
-    </div>
-    <div class="video-desc"><?=nl2br(htmlspecialchars($video['description']))?></div>
-    <a href="index.php" class="back-link">&larr; Back to Home</a>
+    <?php if ($error): ?>
+      <div class="error-message" role="alert"><?=htmlspecialchars($error)?></div>
+    <?php elseif ($video): ?>
+      <h1><?=htmlspecialchars($video['title'])?></h1>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/<?=htmlspecialchars($video['id'])?>"
+                allowfullscreen
+                title="YouTube video player for <?=htmlspecialchars($video['title'])?>"
+                aria-label="YouTube video player for <?=htmlspecialchars($video['title'])?>"></iframe>
+      </div>
+      <div class="video-meta">
+        Published: <?=htmlspecialchars($video['published_at'])?>
+        <?php if (!empty($video['channel_title'])): ?>
+          &nbsp;|&nbsp; Channel: <?=htmlspecialchars($video['channel_title'])?>
+        <?php endif; ?>
+      </div>
+      <div class="video-desc"><?=nl2br(htmlspecialchars($video['description']))?></div>
+      <a href="index.php" class="back-link" aria-label="Back to Home">&larr; Back to Home</a>
+    <?php endif; ?>
   </div>
   <script>
     window.addEventListener('scroll', function() {
       var scrolled = window.pageYOffset;
-      // Clamp the value to a reasonable range
       var pos = Math.max(-500, Math.min(scrolled * 0.4, 500));
       document.querySelector('.parallax-background').style.backgroundPosition = 'center ' + pos + 'px';
-      console.log('Parallax background position:', pos);
     });
   </script>
 </body>
