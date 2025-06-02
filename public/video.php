@@ -190,9 +190,8 @@ $embed_url = "https://www.youtube.com/embed/" . htmlspecialchars($video['id']);
 <body>
   <div class="parallax-background"></div>
   <nav class="navbar">
-    <img src="images/logo-xprnt.png" alt="Plastic Instruments Logo" class="navbar-logo">
+    <a href="index.php"><img src="images/logo-xprnt.png" alt="Plastic Instruments Logo" class="navbar-logo"></a>
     <div class="navbar-links">
-      <a href="index.php" class="navbar-link">Home</a>
       <a href="archive/index.html" class="navbar-link">Archive</a>
       <a href="contact.html" class="navbar-link">Contact</a>
     </div>
