@@ -81,6 +81,28 @@ CREATE TABLE videos (
 
 ---
 
+## Lessons Learned & Changes
+- Parallax background was switched to `bk-three.png` for better effect and accessibility.
+- Navigation bar uses the logo as the home button for a cleaner UI.
+- All database access uses the native PHP SQLite3 extension for performance and simplicity.
+- All input/output is sanitized and error handling is robust.
+- Unit and integration tests are provided for both Python and PHP components.
+- Accessibility and responsiveness were prioritized throughout.
+
+## Final SQLite Schema
+```sql
+CREATE TABLE videos (
+    id TEXT PRIMARY KEY,           -- YouTube video ID
+    title TEXT NOT NULL,
+    description TEXT,
+    thumbnail_url TEXT,
+    published_at TEXT,             -- ISO 8601 datetime string
+    channel_title TEXT
+);
+```
+
+---
+
 ## References
 - [yt-dlp Documentation](https://github.com/yt-dlp/yt-dlp)
 - [SQLite Documentation](https://www.sqlite.org/docs.html)
