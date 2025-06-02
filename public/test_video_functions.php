@@ -6,7 +6,7 @@ echo "Testing get_video_by_id...\n";
 $db_path = realpath(__DIR__ . '/../db/videos.db');
 
 // Test with a valid ID (replace with a real ID from your DB for a real test)
-$test_id = 'test_id';
+$test_id = 'Aj6VwTWssI4';
 list($video, $error) = get_video_by_id($db_path, $test_id);
 echo "Test valid ID: ";
 echo ($video ? "PASS\n" : "FAIL ($error)\n");
