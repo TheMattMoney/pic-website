@@ -41,8 +41,8 @@ diff_band = Difficulty
 
 ### Audio Settings
 ```
-preview_start_time = StartTimeInSeconds
-preview_end_time = EndTimeInSeconds
+preview_start_time = StartTimeInMilliseconds
+preview_end_time = EndTimeInMilliseconds
 ```
 
 ### Game-Specific Settings
@@ -74,8 +74,8 @@ video_start_time = StartTimeInSeconds
 - 6: Expert+++
 
 ### Audio Settings
-- `preview_start_time`: Start time of the preview in seconds (float)
-- `preview_end_time`: End time of the preview in seconds (float)
+- `preview_start_time`: Start time of the preview in milliseconds (integer)
+- `preview_end_time`: End time of the preview in milliseconds (integer)
 
 ### Game-Specific Settings
 - `modchart`: Whether the chart uses modchart features (boolean)
@@ -130,8 +130,8 @@ diff_rhythm = 2
 diff_bass = 3
 diff_drums = 4
 diff_keys = 2
-preview_start_time = 12.5
-preview_end_time = 42.3
+preview_start_time = 40000
+preview_end_time = 50000
 modchart = false
 ```
 
