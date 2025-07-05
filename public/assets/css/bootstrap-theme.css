@@ -1,0 +1,160 @@
+/* Bootstrap Theme Overrides for Plastic Instruments */
+
+/* Custom CSS Variables for Brand Colors */
+:root {
+  --bs-primary: #ffd700;
+  --bs-secondary: #222;
+  --bs-dark: #111;
+  --bs-body-bg: #111;
+  --bs-body-color: #fff;
+  --bs-font-family: 'Atkinson Regular', Arial, sans-serif;
+  --bs-heading-font-family: 'Atkinson Bold', Arial, sans-serif;
+}
+
+/* Font Face Declarations */
+@font-face {
+  font-family: 'Atkinson Bold';
+  src: url('../fonts/atkinson-bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Atkinson Regular';
+  src: url('../fonts/atkinson-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Body and Typography Overrides */
+body {
+  font-family: var(--bs-font-family);
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--bs-heading-font-family);
+}
+
+/* Parallax Background */
+.parallax-background {
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  width: 100vw; 
+  height: 100vh;
+  z-index: -1;
+  background: url('../images/bk-three.png') repeat-y center center, #111;
+  /* background-size: cover; */
+  background-repeat: repeat-y;
+  will-change: transform;
+  pointer-events: none;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+/* Custom Navbar Styling */
+.navbar {
+  background: rgba(0,0,0,0.85) !important;
+  backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+  padding: 0;
+}
+
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-family: var(--bs-heading-font-family);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--bs-primary) !important;
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Custom Button Styling */
+.btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: var(--bs-secondary);
+  font-family: var(--bs-heading-font-family);
+}
+
+.btn-primary:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: var(--bs-secondary);
+}
+
+/* Custom Card Styling */
+.card {
+  background: rgba(0,0,0,0.7);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(34, 34, 34, 0.5);
+}
+
+.card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 4px 24px rgba(34, 34, 34, 0.7);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+/* Custom Form Styling */
+.form-control {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.form-control:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--bs-primary);
+  color: #fff;
+  box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+}
+
+.form-label {
+  color: var(--bs-primary);
+  font-family: var(--bs-heading-font-family);
+}
+
+/* Custom Alert Styling */
+.alert {
+  border: none;
+  border-radius: 10px;
+}
+
+.alert-danger {
+  background: rgba(255, 0, 0, 0.1);
+  color: #b00;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar-nav {
+    gap: 1rem;
+  }
+  
+  .navbar-brand img {
+    height: 36px;
+  }
+} 

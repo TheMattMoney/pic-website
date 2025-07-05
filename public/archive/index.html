@@ -4,139 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Archive - Plastic Instruments</title>
-  <style>
-    @font-face {
-      font-family: 'Atkinson Bold';
-      src: url('../assets/fonts/atkinson-bold.woff') format('woff');
-      font-weight: bold;
-      font-style: normal;
-    }
-    @font-face {
-      font-family: 'Atkinson Regular';
-      src: url('../assets/fonts/atkinson-regular.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      font-family: 'Atkinson Regular', Arial, sans-serif;
-      color: #222;
-    }
-    .parallax-background {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: -1;
-      background: url('../assets/images/bk-three.png') no-repeat center center, #111;
-      background-size: cover;
-      will-change: background-position;
-      pointer-events: none;
-    }
-    .navbar {
-      width: 100%;
-      background: rgba(0,0,0,0.85);
-      display: flex;
-      align-items: center;
-      padding: 0.5rem 2rem;
-      box-sizing: border-box;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-    }
-    .navbar-logo {
-      height: 48px;
-      margin-right: 2rem;
-    }
-    .navbar-links {
-      display: flex;
-      gap: 2rem;
-    }
-    .navbar-link {
-      color: #fff;
-      text-decoration: none;
-      font-family: 'Atkinson Bold', Arial, sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 1px;
-      transition: color 0.2s;
-    }
-    .navbar-link:hover {
-      color: #ffd700;
-    }
-    .main-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding-top: 100px;
-      text-align: center;
-    }
-    h1 {
-      font-family: 'Atkinson Bold', Arial, sans-serif;
-      font-size: 2.2rem;
-      color: #fff;
-      text-shadow: 2px 2px 8px #222;
-      margin-bottom: 1rem;
-    }
-    .coming-soon {
-      font-size: 1.3rem;
-      color: #ffd700;
-      letter-spacing: 0.5px;
-      text-shadow: 1px 1px 6px #222;
-    }
-    a {
-      color: #fff;
-      text-decoration: underline;
-      margin-top: 2rem;
-      display: inline-block;
-    }
-    a:hover {
-      color: #ffd700;
-    }
-    @media (max-width: 600px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.5rem 1rem;
-      }
-      .navbar-logo {
-        height: 36px;
-        margin-bottom: 0.5rem;
-      }
-      .navbar-links {
-        gap: 1rem;
-      }
-      .main-content {
-        padding-top: 80px;
-      }
-      h1 {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom Theme CSS -->
+  <link rel="stylesheet" href="../assets/css/bootstrap-theme.css">
+  
+  <!-- Preload fonts -->
+  <link rel="preload" href="../assets/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="../assets/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin>
 </head>
 <body>
   <div class="parallax-background"></div>
-  <nav class="navbar">
-    <a href="../index.php"><img src="../assets/images/logo-xprnt.png" alt="Plastic Instruments Logo" class="navbar-logo"></a>
-    <div class="navbar-links">
-      <a href="index.html" class="navbar-link">Archive</a>
-      <a href="../contact.html" class="navbar-link">Contact</a>
+  
+  <!-- Bootstrap Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../index.php">
+        <img src="../assets/images/logo-xprnt.png" alt="Plastic Instruments Logo" height="48">
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Archive</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
-  <div class="main-content">
-    <h1>Archive</h1>
-    <div class="coming-soon">Coming Soon</div>
+  
+  <div class="container-fluid d-flex align-items-center justify-content-center" style="min-height: 100vh; padding-top: 100px;">
+    <div class="row justify-content-center w-100">
+      <div class="col-12 text-center">
+        <h1 class="mb-4" style="text-shadow: 2px 2px 8px #222;">Archive</h1>
+        <div class="h4" style="color: #ffd700; letter-spacing: 0.5px; text-shadow: 1px 1px 6px #222;">Coming Soon</div>
+      </div>
+    </div>
   </div>
-  <script>
-    window.addEventListener('scroll', function() {
-      var scrolled = window.pageYOffset;
-      var pos = Math.max(-500, Math.min(scrolled * 0.4, 500));
-      document.querySelector('.parallax-background').style.backgroundPosition = 'center ' + pos + 'px';
-      console.log('Parallax background position:', pos);
-    });
-  </script>
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Vanilla JS Tiled Parallax -->
+  <script src="../assets/js/parallax-tiled.js"></script>
 </body>
 </html> 
